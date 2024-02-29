@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Box;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-use App\Models\Box;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
@@ -38,7 +39,7 @@ class ItemController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
-            'picture' => 'nullable|string',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'price' => 'nullable|numeric',
             'box_id' => 'nullable|exists:boxes,id',
         ]);
@@ -85,13 +86,17 @@ class ItemController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
-            'picture' => 'nullable|string',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'price' => 'nullable|numeric',
             'box_id' => 'nullable|exists:boxes,id',
         ]);
 
         if ($request->hasFile('picture')) {
             $validated['picture'] = $request->file('picture')->store('public/photos');
+
+            if ($item->picture) {
+                Storage::delete($item->picture);
+            }
         }
 
         $item->update($validated);
@@ -104,7 +109,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        // $this->authorize('delete', $item);
+        Storage::delete($item->picture);
 
         $item->delete();
 

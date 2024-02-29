@@ -1,7 +1,9 @@
 export function dynamicSearch() {
     const input = document.getElementById("search");
 
-    input.addEventListener("keyup", function () {
+    input.addEventListener("keyup", function (e) {
+        e.preventDefault();
+        
         let filter = input.value.toUpperCase();
 
         const table = document.getElementById("items-table");
