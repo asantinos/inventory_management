@@ -23,9 +23,11 @@ class ItemController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('items.create', [
+            'boxes' => Box::all(),
+        ]);
     }
 
     /**
@@ -33,7 +35,21 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:500',
+            'picture' => 'nullable|string',
+            'price' => 'nullable|numeric',
+            'box_id' => 'nullable|exists:boxes,id',
+        ]);
+
+        if ($request->hasFile('picture')) {
+            $validated['picture'] = $request->file('picture')->store('public/photos');
+        }
+
+        Item::create($validated);
+
+        return redirect(route('items.index'));
     }
 
     /**
@@ -41,8 +57,9 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
-
+        return view('items.show', [
+            'item' => $item,
+        ]);
     }
 
     /**
@@ -73,6 +90,10 @@ class ItemController extends Controller
             'box_id' => 'nullable|exists:boxes,id',
         ]);
 
+        if ($request->hasFile('picture')) {
+            $validated['picture'] = $request->file('picture')->store('public/photos');
+        }
+
         $item->update($validated);
 
         return redirect(route('items.index'));
@@ -83,6 +104,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
+        // $this->authorize('delete', $item);
+
         $item->delete();
 
         return redirect(route('items.index'));
