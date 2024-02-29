@@ -14,29 +14,29 @@
                         @csrf
 
                         <div class="mb-4">
-                            <label for="name" class="block text-neutral-300 text-sm font-bold mb-">Name:</label>
-                            <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <label for="name" class="block text-neutral-300 text-sm font-bold mb-2">Name:</label>
+                            <input type="text" name="name" id="name" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-full">
                         </div>
 
                         <div class="mb-4">
                             <label for="description" class="block text-neutral-300 text-sm font-bold mb-2">Description:</label>
-                            <textarea name="description" rows="5" id="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" style="resize: none;"></textarea>
+                            <textarea name="description" rows="5" id="description" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-full" style="resize: none;"></textarea>
                         </div>
 
                         <div class="mb-4">
                             <label for="picture" class="block text-neutral-300 text-sm font-bold mb-2">Picture:</label>
-                            <input type="file" name="picture" id="picture" class="shadow appearance-none border rounded w-full py-2 px-3 text-neutral-300 leading-tight focus:outline-none focus:shadow-outline">
+                            <input type="file" name="picture" id="picture" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 py-3 w-full">
                         </div>
 
                         <div class="mb-4">
                             <label for="price" class="block text-neutral-300 text-sm font-bold mb-2">Price:</label>
-                            <input type="number" name="price" id="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <input type="number" name="price" id="price" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-full">
                         </div>
 
                         <div class="mb-4">
                             <label for="box" class="block text-neutral-300 text-sm font-bold mb-2">Box:</label>
                             <!-- boxes have label and in items corresponds to box_id -->
-                            <select name="box_id" id="box" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <select name="box_id" id="box" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-full">
                                 <option value="">Select a box</option>
                                 @foreach ($boxes as $box)
                                 <option value="{{ $box->id }}">{{ $box->label }}</option>
