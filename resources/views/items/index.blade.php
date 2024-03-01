@@ -1,3 +1,7 @@
+@section('page_title')
+{{ "Items" }}
+@endsection
+
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between">
