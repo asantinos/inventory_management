@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Box;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Loan;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -56,10 +57,11 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Item $item)
+    public function show(Item $item): View
     {
         return view('items.show', [
             'item' => $item,
+            'loans' => Loan::all(),
         ]);
     }
 

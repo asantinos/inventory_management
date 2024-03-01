@@ -30,8 +30,22 @@
 
                 <div id="options-menu" class="hidden origin-top-right absolute top-12 right-0 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div class="py-1">
-                        @if ($item->activeLoan() && $item->activeLoan()->user_id === Auth::id())
-                        <a href="{{ route('loans.edit', $item->activeLoan()->id) }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600">Return Loan</a>
+                        @php
+                        $activeLoan = $item->activeLoan();
+                        @endphp
+
+                        @if ($activeLoan)
+                        @if ($activeLoan->user_id === auth()->user()->id)
+                        <form action="{{ route('loans.update', ['loan' => $item->activeLoan()->id]) }}" method="POST" class="inline">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="block w-full px-4 py-2 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600">Return Loan</button>
+                        </form>
+                        @else
+                        <a href="{{ route('loans.show', $activeLoan->id) }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600">View Loan</a>
+                        @endif
+                        @else
+                        <a href="{{ route('loans.create', ['item_id' => $item->id]) }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600">Create loan</a>
                         @endif
 
                         <a href="{{ route('items.edit', $item->id) }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600">Edit</a>

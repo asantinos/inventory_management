@@ -105,7 +105,7 @@
                                         @if ($activeLoan)
                                         <a href="{{ route('loans.show', $activeLoan->id) }}" class="text-orange-600 dark:text-orange-400 hover:text-orange-900 dark:hover:text-orange-300 focus:outline-none focus:underline">View loan details</a>
                                         @else
-                                        <a href="{{ route('loans.create', ['item_id' => $item->id]) }}" class="text-green-600 dark:text-green-400 hover:text-green-900 dark:hover:text-green-300 focus:outline-none focus:underline">Lend</a>
+                                        <a href="{{ route('loans.create', ['item_id' => $item->id]) }}" class="text-green-600 dark:text-green-400 hover:text-green-900 dark:hover:text-green-300 focus:outline-none focus:underline">Borrow</a>
                                         @endif
                                     </div>
                                 </td>
