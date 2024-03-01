@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('item_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
-            $table->date('checkout_date');
+            $table->date('checkout_date')->default(now());
             $table->date('due_date');
             $table->date('returned_date')->nullable();
             

@@ -15,7 +15,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
                     New Item
-                </a>    
+                </a>
 
                 <!-- Dynamic search -->
                 <div class="flex items-center bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-72">
@@ -89,9 +89,9 @@
                                         @endif
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap z-10">
+                                <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex justify-center gap-2">
-                                        <a href="{{ route('items.edit', $item->id) }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-300">Edit</a>
+                                        <a href="{{ route('items.edit', $item->id) }}" class="bg-blue-300 py-2 px-4 text-black z-50">Edit</a>
                                         <a href="{{ route('items.show', $item->id) }}" class="text-green-600 dark:text-green-400 hover:text-green-900 dark:hover:text-green-300">Lend</a>
                                         <form action="{{ route('items.destroy', $item->id) }}" method="POST">
                                             @csrf

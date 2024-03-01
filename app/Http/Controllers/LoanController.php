@@ -6,13 +6,14 @@ use App\Models\Loan;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\User;
+use Illuminate\View\View;
 
 class LoanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         return view('loans.index', [
             'loans' => Loan::all(),
@@ -24,9 +25,12 @@ class LoanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('loans.create', [
+            'items' => Item::all(),
+            'users' => User::all(),
+        ]);
     }
 
     /**
@@ -34,7 +38,17 @@ class LoanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'item_id' => 'required|exists:items,id',
+            'due_date' => 'required|date',
+        ]);
+
+        $validated['checkout_date'] = now();
+
+        Loan::create($validated);
+
+        return redirect()->route('loans.index');
     }
 
     /**

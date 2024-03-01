@@ -31,7 +31,7 @@
 
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <table class="min-w-full w-full" id="items-table">
+                    <table class="min-w-full w-full" id="boxes-table">
                         <thead>
                             <tr>
                                 <th class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider whitespace-nowraps">
