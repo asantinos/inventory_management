@@ -24,33 +24,27 @@
                         @csrf
 
                         <div class="mb-4">
-                            <label for="user_id" class="block text-neutral-300 text-sm font-bold mb-2">User:</label>
-                            <select name="user_id" id="user_id" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-full">
-                                <option value="">Select a user</option>
-                                @foreach ($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="mb-4">
                             <label for="item_id" class="block text-neutral-300 text-sm font-bold mb-2">Item:</label>
                             <select name="item_id" id="item_id" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-full">
                                 <option value="">Select an item</option>
                                 @foreach ($items as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                <option value="{{ $item->id }}" {{ old('item_id', isset($selectedItem) ? $selectedItem : '') == $item->id ? 'selected' : '' }}>
+                                    {{ $item->name }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-4">
                             <label for="due_date" class="block text-neutral-300 text-sm font-bold mb-2">Due Date:</label>
-                            <input type="date" name="due_date" id="due_date" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-full">
+                            <!-- Default due date will be 2 weeks from actual date -->
+                            <input type="date" name="due_date" id="due_date" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-full" value="{{ date('Y-m-d', strtotime('+2 weeks')) }}">
                         </div>
 
                         <div class="mb-4">
                             <button type="submit" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none">Create Loan</button>
                         </div>
+                    </form>
                 </div>
             </div>
         </div>

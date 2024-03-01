@@ -91,13 +91,13 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex justify-center gap-2">
-                                        <a href="{{ route('items.edit', $item->id) }}" class="bg-blue-300 py-2 px-4 text-black z-50">Edit</a>
-                                        <a href="{{ route('items.show', $item->id) }}" class="text-green-600 dark:text-green-400 hover:text-green-900 dark:hover:text-green-300">Lend</a>
+                                        <a href="{{ route('items.edit', $item->id) }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 focus:outline-none focus:underline">Edit</a>
                                         <form action="{{ route('items.destroy', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300">Delete</button>
+                                            <button type="submit" class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300 focus:outline-none focus:underline">Delete</button>
                                         </form>
+                                        <a href="{{ route('loans.create', ['item_id' => $item->id]) }}" class="text-green-600 dark:text-green-400 hover:text-green-900 dark:hover:text-green-300 focus:outline-none focus:underline">Lend</a>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">

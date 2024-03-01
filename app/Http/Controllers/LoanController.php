@@ -27,9 +27,12 @@ class LoanController extends Controller
      */
     public function create(): View
     {
+        $selectedItem = request()->input('item_id');
+        
         return view('loans.create', [
             'items' => Item::all(),
             'users' => User::all(),
+            'selectedItem' => $selectedItem,
         ]);
     }
 

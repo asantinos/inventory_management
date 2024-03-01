@@ -52,7 +52,7 @@ function moveItemToAssigned(e) {
 }
 
 function updateItemBoxId(itemId, boxId) {
-    // Perform an AJAX request to update the box_id on the server
+    // AJAX request to update the box_id on the server
     fetch(`/update-item-box/${itemId}`, {
         method: "PATCH",
         headers: {
