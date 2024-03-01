@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Loan;
 use Illuminate\Http\Request;
+use App\Models\Item;
+use App\Models\User;
 
 class LoanController extends Controller
 {
@@ -12,7 +14,11 @@ class LoanController extends Controller
      */
     public function index()
     {
-        //
+        return view('loans.index', [
+            'loans' => Loan::all(),
+            'items' => Item::all(),
+            'users' => User::all(),
+        ]);
     }
 
     /**

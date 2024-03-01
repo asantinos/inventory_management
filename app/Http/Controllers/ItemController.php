@@ -39,7 +39,7 @@ class ItemController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'price' => 'nullable|numeric',
             'box_id' => 'nullable|exists:boxes,id',
         ]);
@@ -86,7 +86,7 @@ class ItemController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'price' => 'nullable|numeric',
             'box_id' => 'nullable|exists:boxes,id',
         ]);
@@ -109,7 +109,9 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        Storage::delete($item->picture);
+        if ($item->picture) {
+            Storage::delete($item->picture);
+        }
 
         $item->delete();
 

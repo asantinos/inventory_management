@@ -1,6 +1,6 @@
 import { dynamicSearch } from "./dynamicSearch.js";
-import { setupItemClickHandler } from "./showItem.js";
+import { showItem } from "./showRow.js";
 
 dynamicSearch();
 
-setupItemClickHandler();
+showItem();

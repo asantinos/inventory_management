@@ -40,7 +40,7 @@
 
                         <div class="mb-4">
                             <label for="price" class="block text-neutral-300 text-sm font-bold mb-2">Price:</label>
-                            <input type="number" name="price" id="price" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-full">
+                            <input type="number" step=".01" name="price" id="price" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-full">
                         </div>
 
                         <div class="mb-4">

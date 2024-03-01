@@ -1,4 +1,3 @@
-// Get the elements
 const menuButton = document.getElementById("options-menu-button");
 const optionsMenu = document.getElementById("options-menu");
 

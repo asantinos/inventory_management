@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\BoxController;
+use App\Http\Controllers\LoanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +38,10 @@ Route::resource('items', ItemController::class)->middleware('auth');
 // Boxes
 Route::resource('boxes', BoxController::class)->middleware('auth');
 
-require __DIR__.'/auth.php';
+// Update box_id of items from the boxes.edit view
+Route::patch('/update-item-box/{item}', [BoxController::class, 'updateItemBox']);
+
+// Loans
+Route::resource('loans', LoanController::class)->middleware('auth');
+
+require __DIR__ . '/auth.php';

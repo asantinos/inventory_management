@@ -10,8 +10,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex items-center justify-between mb-8">
-                <!-- Back arrow -->
-                <a href="{{ route('boxes.index') }}" class="flex items-center whitespace-nowrap rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none">
+                <a href="{{ route('boxes.show', $box->id) }}" class="flex items-center whitespace-nowrap rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none">
+                    <!-- Back arrow -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="-ml-1 mr-2 h-5 w-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
@@ -49,22 +49,21 @@
                         <div class="mb-4">
                             <label for="items" class="block text-neutral-300 text-sm font-bold mb-2">Items:</label>
                             <div class="flex gap-4">
-                                <!-- Select for items in the box -->
                                 <ul id="assignedItems" class="py-3 overflow-auto bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-1/2">
                                     @foreach($box->items as $item)
-                                    <li class="item-row cursor-pointer px-3 py-1 hover:bg-red-400 mb-1 last:mb-0 rounded-md" data-id="{{ $item->id }}">{{ $item->name }}</li>
+                                    <li class="assigned-item item-row cursor-pointer px-3 py-1 hover:bg-red-400 mb-1 last:mb-0 rounded-md" data-id="{{ $item->id }}" data-box_id="{{ $item->box_id }}">{{ $item->name }}</li>
                                     @endforeach
                                 </ul>
 
-                                <!-- Select for items with null box_id -->
                                 <ul id="unassignedItems" class="py-3 overflow-auto bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-1/2">
                                     @foreach($unassignedItems as $item)
-                                    <li class="item-row cursor-pointer px-3 py-1 hover:bg-green-500  mb-1 last:mb-0 rounded-md" data-id="{{ $item->id }}">{{ $item->name }}</li>
+                                    <li class="unassigned-item item-row cursor-pointer px-3 py-1 hover:bg-green-500  mb-1 last:mb-0 rounded-md" data-id="{{ $item->id }}">{{ $item->name }}</li>
                                     @endforeach
                                 </ul>
                             </div>
-
                         </div>
+
+                        <input type="hidden" name="box" id="box" value="{{ $box->id }}">
 
                         <div class="mb-4">
                             <button type="submit" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none">Update Box</button>
@@ -74,4 +73,6 @@
             </div>
         </div>
     </div>
+
+    <script type="module" src="{{ asset('js/toggleBoxItems.js') }}"></script>
 </x-app-layout>
