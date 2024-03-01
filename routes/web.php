@@ -19,7 +19,8 @@ use App\Http\Controllers\LoanController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect('/items');
 });
 
 Route::get('/useGuide', function () {
