@@ -42,7 +42,7 @@
                         </thead>
                         <tbody>
                             @foreach ($loans as $loan)
-                            <tr class="loans-data">
+                            <tr class="loan-row cursor-pointer hover:bg-gray-750" data-id="{{ $loan->id }}">
                                 <td class="px-6 py-4">
                                     <div class="text-center text-sm font-medium text-gray-900 dark:text-gray-200">
                                         {{ $users->find($loan->user_id)->name }}
@@ -65,7 +65,17 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-center text-sm font-medium text-gray-900 dark:text-gray-200">
+                                        @if ($loan->returned_date === null && $loan->user_id === Auth::id())
+                                        <form action="{{ route('loans.update', $loan->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="text-blue-600 dark:text-blue-400 hover:underline focus:outline-none">
+                                                Mark as returned
+                                            </button>
+                                        </form>
+                                        @else
                                         {{ $loan->returned_date }}
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -77,4 +87,5 @@
         </div>
     </div>
 
+    <script type="module" src="{{ asset('js/loansMain.js') }}"></script>
 </x-app-layout>

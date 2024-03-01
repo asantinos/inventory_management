@@ -26,4 +26,9 @@ class Item extends Model
     {
         return $this->hasMany(Loan::class);
     }
+
+    public function activeLoan()
+    {
+        return $this->loans()->whereNull('returned_date')->first();
+    }
 }

@@ -12,11 +12,9 @@ class Loan extends Model
     protected $fillable = [
         'user_id',
         'item_id',
+        'checkout_date',
         'due_date',
-    ];
-
-    protected $attributes = [
-        'checkout_date' => null,
+        'returned_date',
     ];
 
     public function user()

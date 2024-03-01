@@ -91,18 +91,31 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex justify-center gap-2">
+                                        @php
+                                        $activeLoan = $item->activeLoan();
+                                        @endphp
+
                                         <a href="{{ route('items.edit', $item->id) }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 focus:outline-none focus:underline">Edit</a>
                                         <form action="{{ route('items.destroy', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300 focus:outline-none focus:underline">Delete</button>
                                         </form>
+
+                                        @if ($activeLoan)
+                                        <a href="{{ route('loans.show', $activeLoan->id) }}" class="text-orange-600 dark:text-orange-400 hover:text-orange-900 dark:hover:text-orange-300 focus:outline-none focus:underline">View loan details</a>
+                                        @else
                                         <a href="{{ route('loans.create', ['item_id' => $item->id]) }}" class="text-green-600 dark:text-green-400 hover:text-green-900 dark:hover:text-green-300 focus:outline-none focus:underline">Lend</a>
+                                        @endif
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex justify-center">
-                                        <div class="h-4 w-4 rounded-full bg-{{ $item->available ? 'green' : 'red' }}-500"></div>
+                                        @if ($activeLoan)
+                                        <div class="h-4 w-4 rounded-full bg-red-500"></div>
+                                        @else
+                                        <div class="h-4 w-4 rounded-full bg-green-500"></div>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>

@@ -45,7 +45,6 @@
 
                         <div class="mb-4">
                             <label for="box" class="block text-neutral-300 text-sm font-bold mb-2">Box:</label>
-                            <!-- boxes have label and in items corresponds to box_id -->
                             <select name="box_id" id="box" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-full">
                                 <option value="">Select a box</option>
                                 @foreach ($boxes as $box)

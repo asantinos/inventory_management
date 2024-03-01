@@ -1,7 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            <!-- Arrow back to items -->
             <a href="{{ route('items.index') }}" class="text-gray-400 dark:text-gray-600 hover:text-gray-500 dark:hover:text-gray-400 focus:outline-none focus:underline">Items</a> /
             {{ $item->name}}
         </h2>
@@ -31,6 +30,10 @@
 
                 <div id="options-menu" class="hidden origin-top-right absolute top-12 right-0 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div class="py-1">
+                        @if ($item->activeLoan() && $item->activeLoan()->user_id === Auth::id())
+                        <a href="{{ route('loans.edit', $item->activeLoan()->id) }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600">Return Loan</a>
+                        @endif
+
                         <a href="{{ route('items.edit', $item->id) }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600">Edit</a>
                         <form action="{{ route('items.destroy', $item->id) }}" method="POST">
                             @csrf
@@ -43,6 +46,12 @@
 
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @if ($item->activeLoan())
+                    <p class="text-red-500 dark:text-red-400 mb-4">Not available</p>
+                    @else
+                    <p class="text-green-500 dark:text-green-400 mb-4">Available</p>
+                    @endif
+
                     <div class="mb-4">
                         <label for="name" class="block text-neutral-300 text-sm font-bold mb-2">Name:</label>
                         <p>{{ $item->name }}</p>

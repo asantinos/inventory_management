@@ -28,7 +28,7 @@ class LoanController extends Controller
     public function create(): View
     {
         $selectedItem = request()->input('item_id');
-        
+
         return view('loans.create', [
             'items' => Item::all(),
             'users' => User::all(),
@@ -42,11 +42,11 @@ class LoanController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
             'item_id' => 'required|exists:items,id',
             'due_date' => 'required|date',
         ]);
 
+        $validated['user_id'] = auth()->user()->id;
         $validated['checkout_date'] = now();
 
         Loan::create($validated);
@@ -57,9 +57,13 @@ class LoanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Loan $loan)
+    public function show(Loan $loan): View
     {
-        //
+        return view('loans.show', [
+            'loan' => $loan,
+            'item' => $loan->item,
+            'user' => $loan->user,
+        ]);
     }
 
     /**
@@ -75,7 +79,11 @@ class LoanController extends Controller
      */
     public function update(Request $request, Loan $loan)
     {
-        //
+        $loan->update([
+            'returned_date' => now(),
+        ]);
+
+        return redirect()->route('loans.index');
     }
 
     /**
