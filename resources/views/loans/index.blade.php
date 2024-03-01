@@ -13,13 +13,18 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="w-full flex justify-between mb-8">
+            <div class="w-full flex gap-4 mb-8">
                 <a href="{{ route('loans.create') }}" class="flex items-center whitespace-nowrap rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="-ml-1 mr-2 h-5 w-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
                     New Loan
                 </a>
+
+                <div class="flex items-center">
+                    <input type="checkbox" id="showOnlyMyLoans" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:text-blue-400 dark:focus:border-blue-400 dark:focus:ring-blue-600 dark:focus:ring-opacity-50">
+                    <label for="showOnlyMyLoans" class="ml-2 text-sm text-gray-600 dark:text-gray-400">Show only my loans</label>
+                </div>
             </div>
 
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
