@@ -32,13 +32,13 @@
                     </button>
                 </div>
 
-                <div id="options-menu" class="hidden origin-top-right absolute top-12 right-0 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div id="options-menu" class="hidden origin-top-right absolute top-12 right-0 w-56 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div class="py-1">
-                        <a href="{{ route('boxes.edit', $box->id) }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600">Edit</a>
+                        <a href="{{ route('boxes.edit', $box->id) }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-100 ease-in-out">Edit</a>
                         <form action="{{ route('boxes.destroy', $box->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="block w-full px-4 py-2 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-red-500 hover:text-white dark:hover:bg-red-500">Delete</button>
+                            <button type="submit" class="block w-full px-4 py-2 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-red-500 hover:text-white dark:hover:bg-red-500 transition duration-100 ease-in-out">Delete</button>
                         </form>
                     </div>
                 </div>
