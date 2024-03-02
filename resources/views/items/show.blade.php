@@ -83,9 +83,9 @@
                     <div class="mb-4">
                         <label for="picture" class="block text-neutral-300 text-sm font-bold mb-2">Picture:</label>
                         @if ($item->picture)
-                        <img src="{{ asset(Storage::url($item->picture)) }}" alt="{{ $item->name }}" class="h-60 w-60">
+                        <img src="{{ asset(Storage::url($item->picture)) }}" alt="{{ $item->name }}" class="h-60 w-60 object-cover rounded-md">
                         @else
-                        <img src="https://via.placeholder.com/150" alt="{{ $item->name }}" class="h-60 w-60">
+                        <div class="flex items-center justify-center h-60 w-60 bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500">No picture</div>
                         @endif
                     </div>
 

@@ -84,9 +84,9 @@
                                 <td class="px-6 py-4">
                                     <div class="flex justify-center h-20 w-20">
                                         @if ($item->picture)
-                                        <img src="{{ asset(Storage::url($item->picture)) }}" alt="{{ $item->name }}" class="h-20 w-20">
+                                        <img src="{{ asset(Storage::url($item->picture)) }}" alt="{{ $item->name }}" class="h-20 w-20 object-cover rounded-md">
                                         @else
-                                        <img src="https://via.placeholder.com/150" alt="{{ $item->name }}" class="h-20 w-20">
+                                        <div class="flex items-center justify-center h-20 w-20 bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-xs">No picture</div>
                                         @endif
                                     </div>
                                 </td>
