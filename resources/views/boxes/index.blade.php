@@ -28,7 +28,7 @@
                     </svg>
 
 
-                    <input type="text" name="search" id="search" class="bg-transparent border-none focus:outline-none focus:ring-0 w-full text-gray-900 dark:text-gray-200 placeholder:text-gray-400" placeholder="Search boxes">
+                    <input type="text" name="search" id="search" class="text-sm bg-transparent border-none focus:outline-none focus:ring-0 w-full text-gray-900 dark:text-gray-200 placeholder:text-gray-400" placeholder="Search boxes">
                 </div>
 
             </div>

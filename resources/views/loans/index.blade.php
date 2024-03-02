@@ -22,8 +22,8 @@
                 </a>
 
                 <div class="flex items-center">
-                    <input type="checkbox" id="showOnlyMyLoans" class="rounded shadow-sm focus:border-0 focus:ring-0 dark:focus:border-0 dark:focus:ring-0">
-                    <label for="showOnlyMyLoans" class="ml-2 text-sm text-gray-600 dark:text-gray-400">Show only my loans</label>
+                    <input type="checkbox" id="showOnlyMyLoans" class="hidden rounded shadow-sm focus:border-0 focus:ring-0 dark:focus:border-0 dark:focus:ring-0">
+                    <label for="showOnlyMyLoans" id="showOnlyMyLoansLabel" class="w-52 text-center cursor-pointer whitespace-nowrap rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none">Show only my loans</label>
                 </div>
             </div>
 
