@@ -1,15 +1,23 @@
 export function onlyOwnLoans() {
-    const showOnlyMyLoansCheckbox = document.getElementById("showOnlyMyLoans");
-    const loanRows = document.querySelectorAll(".loan-row");
+    const loansTable = document.getElementById("loans-table");
+    const authUserId = loansTable.getAttribute("data-auth-user-id");
+    
+    const ownLoansCheckbox = document.getElementById("showOnlyMyLoans");
 
-    showOnlyMyLoansCheckbox.addEventListener("change", function () {
-        const isChecked = showOnlyMyLoansCheckbox.checked;
+    ownLoansCheckbox.addEventListener("change", function () {
+        console.log(authUserId);
+        let loans = document.querySelectorAll(".loan-row");
 
-        loanRows.forEach(function (row) {
-            const userId = row.dataset.id;
+        loans.forEach(function (loan) {
+            const userId = loan.getAttribute("data-user-id");
 
-            row.style.display =
-                isChecked && userId !== "{{ Auth::id() }}" ? "none" : "";
-        });
+            if (this.checked) {
+                if (userId !== authUserId) {
+                    loan.style.display = "none";
+                }
+            } else {
+                loan.style.display = "";
+            }
+        }, this);
     });
 }

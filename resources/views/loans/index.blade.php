@@ -22,14 +22,14 @@
                 </a>
 
                 <div class="flex items-center">
-                    <input type="checkbox" id="showOnlyMyLoans" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:text-blue-400 dark:focus:border-blue-400 dark:focus:ring-blue-600 dark:focus:ring-opacity-50">
+                    <input type="checkbox" id="showOnlyMyLoans" class="rounded shadow-sm focus:border-0 focus:ring-0 dark:focus:border-0 dark:focus:ring-0">
                     <label for="showOnlyMyLoans" class="ml-2 text-sm text-gray-600 dark:text-gray-400">Show only my loans</label>
                 </div>
             </div>
 
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <table class="min-w-full w-full">
+                    <table class="min-w-full w-full" id="loans-table" data-auth-user-id="{{ Auth::id() }}">
                         <thead>
                             <tr>
                                 <th class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider whitespace-nowraps">
@@ -51,7 +51,7 @@
                         </thead>
                         <tbody>
                             @foreach ($loans as $loan)
-                            <tr class="loan-row cursor-pointer hover:bg-gray-750" data-id="{{ $loan->id }}">
+                            <tr class="loan-row cursor-pointer hover:bg-gray-750" data-id="{{ $loan->id }}" data-user-id="{{ $loan->user_id }}">
                                 <td class="px-6 py-4">
                                     <div class="text-center text-sm font-medium text-gray-900 dark:text-gray-200">
                                         {{ $users->find($loan->user_id)->name }}
@@ -74,7 +74,8 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-center text-sm font-medium text-gray-900 dark:text-gray-200">
-                                        @if ($loan->returned_date === null && $loan->user_id === Auth::id())
+                                        @if ($loan->returned_date === null)
+                                        @if ($loan->user_id === Auth::id())
                                         <form action="{{ route('loans.update', $loan->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
@@ -82,6 +83,9 @@
                                                 Mark as returned
                                             </button>
                                         </form>
+                                        @else
+                                        <span class="text-red-600 dark:text-red-400">Not returned</span>
+                                        @endif
                                         @else
                                         {{ $loan->returned_date }}
                                         @endif
