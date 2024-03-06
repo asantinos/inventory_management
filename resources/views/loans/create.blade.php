@@ -32,9 +32,12 @@
                             <select name="item_id" id="item_id" class="bg-gray-600 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-3 w-full">
                                 <option value="">Select an item</option>
                                 @foreach ($items as $item)
+                                <!-- Check if item has an activeLoan -->
+                                @if (!$item->activeLoan())
                                 <option value="{{ $item->id }}" {{ old('item_id', isset($selectedItem) ? $selectedItem : '') == $item->id ? 'selected' : '' }}>
                                     {{ $item->name }}
                                 </option>
+                                @endif
                                 @endforeach
                             </select>
                         </div>
